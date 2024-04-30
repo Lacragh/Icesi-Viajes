@@ -76,11 +76,12 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public String addUser(UserDTO userDTO) {
 		User user = new User(
-				userDTO.getId_user(),
 				userDTO.getLogin(),
 				this.passwordEncoder.encode(userDTO.getPassword()),
 				userDTO.getFirst_name(),
-				userDTO.getLast_name()
+				userDTO.getLast_name(),
+				userDTO.getNum_id(),
+				"true"
 		);
 		userRepository.save(user);
 		return user.getFirst_name();

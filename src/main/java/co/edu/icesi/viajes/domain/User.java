@@ -1,16 +1,14 @@
 package co.edu.icesi.viajes.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users")
 public class User {
 	
 	@Id
-	@Column(name = "id_user", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_user")
     private Integer id_user;
 	@Column(name = "login", nullable = false)
     private String login;
@@ -25,12 +23,13 @@ public class User {
 	@Column(name = "states", nullable = false)
     private String state;
 
-	public User(Integer id_user, String login, String password, String first_name, String last_name) {
-		this.id_user = id_user;
+	public User( String login, String password, String first_name, String last_name, String num_id, String state) {
 		this.login = login;
 		this.password = password;
 		this.first_name = first_name;
 		this.last_name = last_name;
+		this.num_id = num_id;
+		this.state = state;
 	}
 
 	public User() {

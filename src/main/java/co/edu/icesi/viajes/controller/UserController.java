@@ -11,7 +11,6 @@ import co.edu.icesi.viajes.service.UserService;
 @RestController
 @CrossOrigin
 @RequestMapping("api/v1/user")
-
 public class UserController {
 
     @Autowired
