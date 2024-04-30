@@ -4,4 +4,4 @@
 
 ## Santiago Jose Belalcazar Bonelo
 
-## Luis Vaguete Pinillos
+## Luis Fernando Pinillos Sanchez
