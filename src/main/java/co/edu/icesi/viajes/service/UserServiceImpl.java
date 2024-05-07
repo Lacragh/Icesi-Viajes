@@ -90,13 +90,13 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public LoginResponse loginUser(loginDTO loginDTO) {
 		String msg = "";
-		User user = userRepository.findByLogin(loginDTO.getEmail());
+		User user = userRepository.findByLogin1(loginDTO.getEmail());
 		if (user != null){
 			String password = loginDTO.getPassword();
 			String encodePassword = user.getPassword();
 			Boolean isPwdRight = passwordEncoder.matches(password, encodePassword);
 			if (isPwdRight){
-				Optional<User> user1 = userRepository.findByLoginAndPassword(loginDTO.getEmail(),loginDTO.getPassword());
+				Optional<User> user1 = userRepository.findByLoginAndPassword(loginDTO.getEmail(),encodePassword);
 				if(user1.isPresent()) {
 					return new LoginResponse("Login Success", true);
 				}else{
@@ -109,5 +109,6 @@ public class UserServiceImpl implements UserService{
 			return new LoginResponse("Email not exist", false);
 		}
 	}
+
 
 }
