@@ -12,6 +12,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Collections;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
@@ -38,6 +39,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         UserDetailsImpl userDetails = (UserDetailsImpl) authResult.getPrincipal();
         String token = TokenUtils.createToken(userDetails.getName(),userDetails.getUsername());
         response.addHeader("Authorization","Bearer " + token);
+        PrintWriter writer = response.getWriter();
+        writer.write(token);
+        writer.flush();
         response.getWriter().flush();
 
         super.successfulAuthentication(request, response, chain, authResult);
